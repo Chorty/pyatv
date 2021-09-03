@@ -67,7 +67,7 @@ class RaopPushUpdater(PushUpdater):
             raise exceptions.NoAsyncListenerError()
 
         self._activated = True
-        asyncio.ensure_future(self.state_updated(), loop=self.loop)
+        asyncio.ensure_future(self.state_updated())
 
     def stop(self) -> None:
         """No longer forward updates to listener."""
@@ -399,7 +399,7 @@ def setup(
         def _trigger():
             """Trigger push update."""
             if push_updater.active:
-                asyncio.ensure_future(push_updater.state_updated(), loop=loop)
+                asyncio.ensure_future(push_updater.state_updated())
 
     service = cast(conf.RaopService, service)
 
